@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import { AccountCard } from "@/features/dashboard/components/account-card";
+import { AccountCard } from "@/features/accounts/components/account-card";
 import type { Account } from "@/features/accounts/types";
 
 const base: Account = {

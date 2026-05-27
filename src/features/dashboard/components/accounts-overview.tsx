@@ -1,4 +1,4 @@
-import { AccountCard } from "@/features/dashboard/components/account-card";
+import { AccountCard } from "@/features/accounts/components/account-card";
 import type { Account } from "@/features/accounts/types";
 
 export function AccountsOverview({ accounts }: { accounts: Account[] }) {

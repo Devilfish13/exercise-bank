@@ -1,9 +1,6 @@
 "use client";
 
-import { AlertCircle } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { ErrorState } from "@/components/feedback/error-state";
 import { useAsyncData } from "@/hooks/use-async-data";
 import { getDashboard } from "@/features/dashboard/api";
 import { SummaryCards } from "@/features/dashboard/components/summary-cards";
@@ -19,18 +16,11 @@ export function DashboardView() {
 
   if (error) {
     return (
-      <Card>
-        <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
-          <AlertCircle className="size-8 text-destructive" aria-hidden="true" />
-          <div>
-            <p className="font-medium">We couldn&apos;t load your dashboard</p>
-            <p className="text-sm text-muted-foreground">{error.message}</p>
-          </div>
-          <Button variant="outline" onClick={retry}>
-            Try again
-          </Button>
-        </CardContent>
-      </Card>
+      <ErrorState
+        title="We couldn't load your dashboard"
+        message={error.message}
+        onRetry={retry}
+      />
     );
   }
 
