@@ -1,0 +1,10 @@
+[
+  {
+    "id": "usr_demo_0001",
+    "fullName": "Alex Morgan",
+    "email": "demo@eaglebank.com",
+    "phone": "+44 777 6688 4444",
+    "createdAt": "2025-01-15T09:30:00.000Z",
+    "passwordHash": "9c327ab9d338a2bfbb175647eceb3fe0:8e51b9f63677b703977027d8afd8e60244beb84710294f8943caef67ccbfa50daf1f67e2d1c6b129bb03a60f7e5b9f74fddc55b94d82acb7d94458a9677b3e2c"
+  }
+]
