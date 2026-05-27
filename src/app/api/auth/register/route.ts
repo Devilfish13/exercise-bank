@@ -8,11 +8,11 @@ import {
   toPublicUser,
 } from "@/features/auth/server/user-store";
 import { hashPassword } from "@/features/auth/server/password";
+import { createSessionToken } from "@/features/auth/server/session";
 import {
-  createSessionToken,
   SESSION_COOKIE,
   sessionCookieOptions,
-} from "@/features/auth/server/session";
+} from "@/features/auth/server/session-cookie";
 
 export async function POST(request: Request) {
   let json: unknown;

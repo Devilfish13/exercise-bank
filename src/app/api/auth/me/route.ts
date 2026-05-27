@@ -2,10 +2,8 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 
 import { findUserById, toPublicUser } from "@/features/auth/server/user-store";
-import {
-  SESSION_COOKIE,
-  verifySessionToken,
-} from "@/features/auth/server/session";
+import { verifySessionToken } from "@/features/auth/server/session";
+import { SESSION_COOKIE } from "@/features/auth/server/session-cookie";
 
 export async function GET() {
   const token = (await cookies()).get(SESSION_COOKIE)?.value;
