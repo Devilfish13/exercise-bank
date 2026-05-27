@@ -1,3 +1,5 @@
+import type { Transaction } from "@/features/transactions/types";
+
 export type AccountType = "current" | "isa" | "credit";
 
 export type AccountStatus = "active" | "frozen" | "closed";
@@ -19,4 +21,9 @@ export type Account = {
   creditLimit?: number;
   currency: string;
   status: AccountStatus;
+};
+
+export type AccountDetail = {
+  account: Account;
+  transactions: Transaction[];
 };
