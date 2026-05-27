@@ -1,0 +1,134 @@
+[
+  {
+    "id": "txn_0001",
+    "accountId": "acc_current_001",
+    "type": "deposit",
+    "description": "Salary",
+    "counterparty": "Northwind Ltd",
+    "amount": 3200.0,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-25T08:02:00.000Z"
+  },
+  {
+    "id": "txn_0002",
+    "accountId": "acc_current_001",
+    "type": "withdrawal",
+    "description": "Groceries",
+    "counterparty": "Tesco",
+    "amount": -84.27,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-24T18:41:00.000Z"
+  },
+  {
+    "id": "txn_0003",
+    "accountId": "acc_current_001",
+    "type": "transfer",
+    "description": "Transfer to Cash ISA",
+    "counterparty": "Cash ISA",
+    "amount": -500.0,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-22T11:15:00.000Z"
+  },
+  {
+    "id": "txn_0004",
+    "accountId": "acc_isa_001",
+    "type": "deposit",
+    "description": "Transfer from Current Account",
+    "counterparty": "Everyday Current Account",
+    "amount": 500.0,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-22T11:15:00.000Z"
+  },
+  {
+    "id": "txn_0005",
+    "accountId": "acc_current_001",
+    "type": "withdrawal",
+    "description": "Electricity bill",
+    "counterparty": "Octopus Energy",
+    "amount": -96.4,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-20T06:30:00.000Z"
+  },
+  {
+    "id": "txn_0006",
+    "accountId": "acc_credit_001",
+    "type": "withdrawal",
+    "description": "Flights",
+    "counterparty": "British Airways",
+    "amount": -312.99,
+    "currency": "GBP",
+    "status": "pending",
+    "date": "2026-05-19T14:05:00.000Z"
+  },
+  {
+    "id": "txn_0007",
+    "accountId": "acc_current_001",
+    "type": "withdrawal",
+    "description": "Coffee",
+    "counterparty": "Pret A Manger",
+    "amount": -4.85,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-18T09:12:00.000Z"
+  },
+  {
+    "id": "txn_0008",
+    "accountId": "acc_current_001",
+    "type": "deposit",
+    "description": "Refund",
+    "counterparty": "Amazon",
+    "amount": 49.99,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-15T16:48:00.000Z"
+  },
+  {
+    "id": "txn_0009",
+    "accountId": "acc_credit_001",
+    "type": "withdrawal",
+    "description": "Restaurant",
+    "counterparty": "Dishoom",
+    "amount": -78.5,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-12T20:22:00.000Z"
+  },
+  {
+    "id": "txn_0010",
+    "accountId": "acc_isa_001",
+    "type": "deposit",
+    "description": "Monthly saving",
+    "counterparty": "Standing order",
+    "amount": 250.0,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-05T07:00:00.000Z"
+  },
+  {
+    "id": "txn_0011",
+    "accountId": "acc_current_001",
+    "type": "withdrawal",
+    "description": "Rent",
+    "counterparty": "Maple Lettings",
+    "amount": -1450.0,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-05-02T05:00:00.000Z"
+  },
+  {
+    "id": "txn_0012",
+    "accountId": "acc_current_001",
+    "type": "withdrawal",
+    "description": "Phone bill",
+    "counterparty": "Vodafone",
+    "amount": -22.0,
+    "currency": "GBP",
+    "status": "completed",
+    "date": "2026-04-28T05:00:00.000Z"
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "acc_current_001",
+    "userId": "usr_demo_0001",
+    "type": "current",
+    "name": "Everyday Current Account",
+    "accountNumber": "31926048",
+    "sortCode": "04-00-72",
+    "balance": 4820.55,
+    "availableBalance": 4820.55,
+    "currency": "GBP",
+    "status": "active"
+  },
+  {
+    "id": "acc_isa_001",
+    "userId": "usr_demo_0001",
+    "type": "isa",
+    "name": "Cash ISA",
+    "accountNumber": "77410523",
+    "sortCode": "04-00-72",
+    "balance": 15250.0,
+    "availableBalance": 15250.0,
+    "currency": "GBP",
+    "status": "active"
+  },
+  {
+    "id": "acc_credit_001",
+    "userId": "usr_demo_0001",
+    "type": "credit",
+    "name": "Eagle Rewards Credit Card",
+    "accountNumber": "4539120000007821",
+    "balance": 1240.3,
+    "availableBalance": 3759.7,
+    "creditLimit": 5000.0,
+    "currency": "GBP",
+    "status": "active"
+  }
+]

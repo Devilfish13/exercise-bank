@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { getSessionUser } from "@/features/auth/server/get-session-user";
-import { toPublicUser } from "@/features/auth/server/user-store";
+import { getDashboardForUser } from "@/features/dashboard/server/get-dashboard";
 
 export async function GET() {
   const user = await getSessionUser();
@@ -10,5 +10,5 @@ export async function GET() {
     return NextResponse.json({ message: "Not authenticated" }, { status: 401 });
   }
 
-  return NextResponse.json({ user: toPublicUser(user) });
+  return NextResponse.json(getDashboardForUser(user.id));
 }
