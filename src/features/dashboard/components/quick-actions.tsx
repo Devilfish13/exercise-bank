@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   ArrowLeftRight,
-  CreditCard,
   Receipt,
   UserRound,
 } from "lucide-react";
@@ -15,7 +14,6 @@ import {
 } from "@/components/ui/card";
 
 const actions: { label: string; href: string; Icon: LucideIcon }[] = [
-  { label: "View accounts", href: "/dashboard", Icon: CreditCard },
   { label: "Transactions", href: "/transactions", Icon: Receipt },
   { label: "Move money", href: "/transactions", Icon: ArrowLeftRight },
   { label: "Edit profile", href: "/profile", Icon: UserRound },
