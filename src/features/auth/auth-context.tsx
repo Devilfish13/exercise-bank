@@ -21,6 +21,7 @@ type AuthContextValue = {
   signIn: (input: LoginInput) => Promise<User>;
   signUp: (input: RegisterInput) => Promise<User>;
   signOut: () => Promise<void>;
+  refreshUser: () => Promise<User>;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -72,9 +73,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setStatus("unauthenticated");
   }, []);
 
+  const refreshUser = useCallback(async () => {
+    const { user: freshUser } = await authApi.getCurrentUser();
+    setUser(freshUser);
+    return freshUser;
+  }, []);
+
   const value = useMemo<AuthContextValue>(
-    () => ({ user, status, signIn, signUp, signOut }),
-    [user, status, signIn, signUp, signOut],
+    () => ({ user, status, signIn, signUp, signOut, refreshUser }),
+    [user, status, signIn, signUp, signOut, refreshUser],
   );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

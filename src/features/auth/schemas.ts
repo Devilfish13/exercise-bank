@@ -29,5 +29,17 @@ export const registerSchema = z
     path: ["confirmPassword"],
   });
 
+export const updateProfileSchema = z.object({
+  fullName: z.string().min(2, "Enter your full name"),
+  email: z.email("Enter a valid email address"),
+  phone: z
+    .string()
+    .min(7, "Enter a valid phone number")
+    .optional()
+    .or(z.literal("")),
+  avatarUrl: z.string().optional(),
+});
+
 export type LoginInput = z.infer<typeof loginSchema>;
 export type RegisterInput = z.infer<typeof registerSchema>;
+export type UpdateProfileInput = z.infer<typeof updateProfileSchema>;

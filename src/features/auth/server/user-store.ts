@@ -36,6 +36,19 @@ export function createUser(input: {
   return user;
 }
 
+export function updateUser(
+  id: string,
+  patch: Partial<Pick<StoredUser, "fullName" | "email" | "phone" | "avatarUrl">>,
+): StoredUser | undefined {
+  const user = users.find((u) => u.id === id);
+  if (!user) return undefined;
+  if (patch.fullName !== undefined) user.fullName = patch.fullName;
+  if (patch.email !== undefined) user.email = patch.email;
+  if (patch.phone !== undefined) user.phone = patch.phone;
+  if (patch.avatarUrl !== undefined) user.avatarUrl = patch.avatarUrl;
+  return user;
+}
+
 /** Project a stored user to the public shape, omitting the password hash. */
 export function toPublicUser(user: StoredUser): User {
   return {
@@ -43,6 +56,7 @@ export function toPublicUser(user: StoredUser): User {
     fullName: user.fullName,
     email: user.email,
     phone: user.phone,
+    avatarUrl: user.avatarUrl,
     createdAt: user.createdAt,
   };
 }

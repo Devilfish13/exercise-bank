@@ -3,6 +3,7 @@ export type User = {
   fullName: string;
   email: string;
   phone?: string;
+  avatarUrl?: string;
   createdAt: string;
 };
 
