@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { AccountCard } from "@/features/accounts/components/account-card";
 import type { Account } from "@/features/accounts/types";
 
@@ -15,7 +17,13 @@ export function AccountsOverview({ accounts }: { accounts: Account[] }) {
         <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
           {accounts.map((account) => (
             <li key={account.id}>
-              <AccountCard account={account} />
+              <Link
+                href={`/accounts/${account.id}`}
+                aria-label={`View ${account.name}`}
+                className="block rounded-xl outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+              >
+                <AccountCard account={account} />
+              </Link>
             </li>
           ))}
         </ul>
