@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { Badge } from "@/components/ui/badge";
 import { formatCurrency, formatDate } from "@/lib/format";
 import type { Transaction } from "@/features/transactions/types";
@@ -5,11 +7,13 @@ import type { Transaction } from "@/features/transactions/types";
 type TransactionListProps = {
   transactions: Transaction[];
   emptyMessage?: string;
+  getHref?: (txn: Transaction) => string;
 };
 
 export function TransactionList({
   transactions,
   emptyMessage = "No transactions yet.",
+  getHref,
 }: TransactionListProps) {
   if (transactions.length === 0) {
     return (
@@ -23,11 +27,8 @@ export function TransactionList({
     <ul className="divide-y divide-border">
       {transactions.map((txn) => {
         const isCredit = txn.amount > 0;
-        return (
-          <li
-            key={txn.id}
-            className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0"
-          >
+        const inner = (
+          <>
             <div className="min-w-0">
               <p className="flex items-center gap-2 font-medium">
                 <span className="truncate">{txn.description}</span>
@@ -52,6 +53,25 @@ export function TransactionList({
               {isCredit ? "+" : ""}
               {formatCurrency(txn.amount, txn.currency)}
             </p>
+          </>
+        );
+
+        const href = getHref?.(txn);
+
+        return (
+          <li key={txn.id}>
+            {href ? (
+              <Link
+                href={href}
+                className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ring/50 hover:bg-muted/40 -mx-2 px-2 transition-colors"
+              >
+                {inner}
+              </Link>
+            ) : (
+              <div className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
+                {inner}
+              </div>
+            )}
           </li>
         );
       })}
