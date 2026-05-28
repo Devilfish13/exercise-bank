@@ -6,12 +6,14 @@ import { LogOut } from "lucide-react";
 
 import { Logo } from "@/components/layout/logo";
 import { Button } from "@/components/ui/button";
+import { Avatar } from "@/features/profile/components/avatar";
 import { useAuth } from "@/features/auth/auth-context";
 
 const NAV_LINKS = [
   { href: "/dashboard", label: "Dashboard" },
   { href: "/accounts", label: "Accounts" },
   { href: "/transactions", label: "Transactions" },
+  { href: "/profile", label: "Profile" },
 ];
 
 export function AppHeader() {
@@ -55,9 +57,13 @@ export function AppHeader() {
 
         <div className="flex items-center gap-3">
           {user ? (
-            <span className="hidden text-sm text-muted-foreground sm:inline">
-              {user.fullName}
-            </span>
+            <Link
+              href="/profile"
+              className="hidden items-center gap-2 rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring/50 sm:flex"
+              aria-label="Your profile"
+            >
+              <Avatar fullName={user.fullName} avatarUrl={user.avatarUrl} size="sm" />
+            </Link>
           ) : null}
           <Button
             variant="outline"
