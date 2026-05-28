@@ -1,4 +1,4 @@
-import { loginSchema, registerSchema } from "@/features/auth/schemas";
+import { loginSchema, registerSchema, updateProfileSchema } from "@/features/auth/schemas";
 
 describe("loginSchema", () => {
   it("accepts a valid email and password", () => {
@@ -60,5 +60,44 @@ describe("registerSchema", () => {
       );
       expect(issue?.message).toBe("Passwords do not match");
     }
+  });
+});
+
+describe("updateProfileSchema", () => {
+  const valid = {
+    fullName: "Alex Morgan",
+    email: "alex@eaglebank.com",
+    phone: "+44 7700 900000",
+  };
+
+  it("accepts a valid profile update", () => {
+    expect(updateProfileSchema.safeParse(valid).success).toBe(true);
+  });
+
+  it("accepts an optional avatarUrl", () => {
+    const result = updateProfileSchema.safeParse({
+      ...valid,
+      avatarUrl: "data:image/png;base64,abc",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts an empty phone (treated as optional)", () => {
+    expect(
+      updateProfileSchema.safeParse({ ...valid, phone: "" }).success,
+    ).toBe(true);
+  });
+
+  it("rejects a name shorter than two characters", () => {
+    const result = updateProfileSchema.safeParse({ ...valid, fullName: "A" });
+    expect(result.success).toBe(false);
+  });
+
+  it("rejects an invalid email", () => {
+    const result = updateProfileSchema.safeParse({
+      ...valid,
+      email: "not-an-email",
+    });
+    expect(result.success).toBe(false);
   });
 });

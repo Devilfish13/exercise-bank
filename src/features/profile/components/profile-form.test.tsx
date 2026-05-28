@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor, fireEvent } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { vi, beforeEach } from "vitest";
 
@@ -117,5 +117,35 @@ describe("ProfileForm", () => {
     expect(
       screen.getByRole("button", { name: /change photo/i }),
     ).toBeInTheDocument();
+  });
+
+  it("shows an error for non-image file selections", async () => {
+    setup();
+    const fileInput = screen.getByLabelText(/upload profile photo/i);
+    const textFile = new File(["hello"], "doc.txt", { type: "text/plain" });
+
+    Object.defineProperty(fileInput, "files", { value: [textFile], configurable: true });
+    fireEvent.change(fileInput);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/please select an image file/i),
+      ).toBeInTheDocument();
+    });
+  });
+
+  it("shows an error for files over 2 MB", async () => {
+    setup();
+    const fileInput = screen.getByLabelText(/upload profile photo/i);
+    const bigFile = new File(["x".repeat(3 * 1024 * 1024)], "big.png", {
+      type: "image/png",
+    });
+
+    Object.defineProperty(fileInput, "files", { value: [bigFile], configurable: true });
+    fireEvent.change(fileInput);
+
+    await waitFor(() => {
+      expect(screen.getByText(/under 2 mb/i)).toBeInTheDocument();
+    });
   });
 });

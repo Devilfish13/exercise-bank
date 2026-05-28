@@ -16,13 +16,29 @@ const demoUser: User = {
 };
 
 function Consumer() {
-  const { status, user, signOut } = useAuth();
+  const { status, user, signOut, signUp, refreshUser } = useAuth();
   return (
     <div>
       <span data-testid="status">{status}</span>
       <span data-testid="user">{user?.fullName ?? "none"}</span>
       <button type="button" onClick={() => void signOut()}>
         Sign out
+      </button>
+      <button
+        type="button"
+        onClick={() =>
+          void signUp({
+            fullName: "New User",
+            email: "new@eaglebank.com",
+            password: "Password123!",
+            confirmPassword: "Password123!",
+          })
+        }
+      >
+        Sign up
+      </button>
+      <button type="button" onClick={() => void refreshUser()}>
+        Refresh
       </button>
     </div>
   );
@@ -61,6 +77,52 @@ describe("AuthProvider", () => {
       expect(screen.getByTestId("status")).toHaveTextContent("unauthenticated"),
     );
     expect(screen.getByTestId("user")).toHaveTextContent("none");
+  });
+
+  it("sets the user on sign up", async () => {
+    mockedApi.getCurrentUser.mockRejectedValue(new Error("no session"));
+    mockedApi.register.mockResolvedValue({ user: demoUser });
+
+    render(
+      <AuthProvider>
+        <Consumer />
+      </AuthProvider>,
+    );
+
+    await waitFor(() =>
+      expect(screen.getByTestId("status")).toHaveTextContent("unauthenticated"),
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /sign up/i }));
+
+    await waitFor(() =>
+      expect(screen.getByTestId("status")).toHaveTextContent("authenticated"),
+    );
+    expect(screen.getByTestId("user")).toHaveTextContent("Alex Morgan");
+    expect(mockedApi.register).toHaveBeenCalledOnce();
+  });
+
+  it("updates the user on refreshUser", async () => {
+    const updatedUser: User = { ...demoUser, fullName: "Alex Jones" };
+    mockedApi.getCurrentUser
+      .mockResolvedValueOnce({ user: demoUser })
+      .mockResolvedValueOnce({ user: updatedUser });
+
+    render(
+      <AuthProvider>
+        <Consumer />
+      </AuthProvider>,
+    );
+
+    await waitFor(() =>
+      expect(screen.getByTestId("user")).toHaveTextContent("Alex Morgan"),
+    );
+
+    await userEvent.click(screen.getByRole("button", { name: /refresh/i }));
+
+    await waitFor(() =>
+      expect(screen.getByTestId("user")).toHaveTextContent("Alex Jones"),
+    );
   });
 
   it("clears the user on sign out", async () => {

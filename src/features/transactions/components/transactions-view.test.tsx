@@ -139,4 +139,35 @@ describe("TransactionsView", () => {
       expect(link).toHaveAttribute("href", "/transactions/txn_0001");
     });
   });
+
+  it("calls getTransactions with sortBy=amount when Amount sort button is clicked", async () => {
+    const { user } = setup();
+
+    await waitFor(() => screen.getByText("Salary"));
+
+    mockGetTransactions.mockResolvedValue(makePageResult());
+    await user.click(screen.getByRole("button", { name: /sort by amount/i }));
+
+    await waitFor(() => {
+      expect(mockGetTransactions).toHaveBeenLastCalledWith(
+        expect.objectContaining({ sortBy: "amount" }),
+      );
+    });
+  });
+
+  it("toggles sort direction when the active sort field is clicked again", async () => {
+    const { user } = setup();
+
+    await waitFor(() => screen.getByText("Salary"));
+
+    mockGetTransactions.mockResolvedValue(makePageResult());
+    // Click Date (already active, sortOrder is "desc") → should flip to "asc"
+    await user.click(screen.getByRole("button", { name: /sort by date/i }));
+
+    await waitFor(() => {
+      expect(mockGetTransactions).toHaveBeenLastCalledWith(
+        expect.objectContaining({ sortBy: "date", sortOrder: "asc" }),
+      );
+    });
+  });
 });
