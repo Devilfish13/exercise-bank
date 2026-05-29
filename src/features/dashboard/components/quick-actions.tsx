@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  ArrowLeftRight,
   Receipt,
   UserRound,
 } from "lucide-react";
@@ -15,7 +14,6 @@ import {
 
 const actions: { label: string; href: string; Icon: LucideIcon }[] = [
   { label: "Transactions", href: "/transactions", Icon: Receipt },
-  { label: "Move money", href: "/transactions", Icon: ArrowLeftRight },
   { label: "Edit profile", href: "/profile", Icon: UserRound },
 ];
 
