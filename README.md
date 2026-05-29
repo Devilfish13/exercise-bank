@@ -2,6 +2,7 @@
 
 A responsive banking frontend built as a take-home assessment. Covers authentication, a personal finance dashboard, account management, transaction history, and profile editing — all backed by a mocked in-memory API (no external services required).
 
+> **Live demo** [exercise-bank.vercel.app](https://exercise-bank.vercel.app)  
 > **Demo credentials** `demo@eaglebank.com` / `Password123!`
 
 ---
